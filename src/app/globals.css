@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: var(--accent);
+  --color-accentSoft: var(--accent-soft);
+  --color-accent-soft: var(--accent-soft);
+  --color-accentInk: var(--accent-ink);
+  --color-accent-ink: var(--accent-ink);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink-2);
+  --color-ink-2: var(--ink-2);
+  --color-ink3: var(--ink-3);
+  --color-ink-3: var(--ink-3);
+  --color-paper: var(--paper);
+  --color-appBg: var(--app-bg);
+  --color-app-bg: var(--app-bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-live: var(--live);
+  --color-onAccent: var(--on-accent);
+  --color-on-accent: var(--on-accent);
+
+  --font-serif: var(--font-serif), serif;
+  --font-sans: var(--font-sans), sans-serif;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+}
+
+:root {
+  /* Light theme */
+  --accent: #2d6a4f;
+  --accent-soft: rgba(45, 106, 79, 0.12);
+  --accent-ink: #ffffff;
+  --ink: #141715;
+  --ink-2: #555e58;
+  --ink-3: #8a948e;
+  --paper: #ffffff;
+  --app-bg: #f8faf8;
+  --surface: #ffffff;
+  --surface-2: #f0f3f1;
+  --line: #e2e6e3;
+  --live: #e5484d;
+  --on-accent: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  /* Dark theme */
+  --accent: #83d0a1;
+  --accent-soft: rgba(131, 208, 161, 0.15);
+  --accent-ink: #0a1a10;
+  --ink: #e0e2e0;
+  --ink-2: #8f9792;
+  --ink-3: #6e7771;
+  --paper: #171c18;
+  --app-bg: #111412;
+  --surface: #171c18;
+  --surface-2: #1a201c;
+  --line: #252a27;
+  --live: #ff6b6b;
+  --on-accent: #0a1a10;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #83d0a1;
+    --accent-soft: rgba(131, 208, 161, 0.15);
+    --accent-ink: #0a1a10;
+    --ink: #e0e2e0;
+    --ink-2: #8f9792;
+    --ink-3: #6e7771;
+    --paper: #171c18;
+    --app-bg: #111412;
+    --surface: #171c18;
+    --surface-2: #1a201c;
+    --line: #252a27;
+    --live: #ff6b6b;
+    --on-accent: #0a1a10;
+  }
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--ink);
+  font-family: var(--font-sans), sans-serif;
+}
+
+@keyframes ui-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ui-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.ui-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--surface) 60%, transparent),
+    transparent
+  );
+  animation: ui-shimmer 1.6s infinite;
+}
